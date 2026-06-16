@@ -11,15 +11,17 @@ revealItems.forEach((item) => observer.observe(item));
 
 const form = document.getElementById('waitlistForm');
 const emailInput = document.getElementById('emailInput');
+const interestType = document.getElementById('interestType');
 const formMessage = document.getElementById('formMessage');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const email = emailInput.value.trim();
+  const type = interestType.value;
   if (!email) return;
   const existing = JSON.parse(localStorage.getItem('homechef_waitlist') || '[]');
-  if (!existing.includes(email)) existing.push(email);
+  existing.push({ email, type, createdAt: new Date().toISOString() });
   localStorage.setItem('homechef_waitlist', JSON.stringify(existing));
-  formMessage.textContent = 'You are on the list — launch updates coming soon!';
+  formMessage.textContent = `Thank you! Your ${type.toLowerCase()} interest has been saved for launch updates.`;
   emailInput.value = '';
 });
