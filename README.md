@@ -1,11 +1,11 @@
-# HomeChef Connect Static Publicity Website
+# HomeChef Connect API Package
 
-This version is designed for initial publicity to home chefs and customers.
+Contents:
+- functionapp/host.json
+- functionapp/package.json
+- functionapp/waitlist/index.js
+- functionapp/waitlist/function.json
+- .github/workflows/deploy-homechef-connect-api.yml
+- frontend-script-js-replacement.js
 
-Files:
-- index.html
-- styles.css
-- script.js
-
-Deployment:
-Upload these files to the root of your GitHub repository and commit changes. Azure Static Web Apps will redeploy automatically after the commit.
+Use this package in a GitHub repository to deploy the Function App via GitHub Actions.
