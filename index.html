@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HomeChef Connect - Launching soon. A trusted homemade food marketplace connecting verified home chefs with customers." />
+  <meta name="description" content="HomeChef Connect - Launching soon. A trusted homemade food marketplace connecting local home chefs with customers." />
   <title>HomeChef Connect | Launching Soon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
       <div class="float-chip chip-two">🥗</div>
       <div class="float-chip chip-three">🫓</div>
 
-      <div class="hero-copy reveal">
+      <div class="hero-copy reveal show">
         <span class="eyebrow">✨ Launching Soon • Homemade Food Community</span>
         <h1>Fresh homemade food, cooked by local home chefs. <span>Made with trust.</span></h1>
         <p class="hero-text">HomeChef Connect is a coming-soon food community that helps home chefs showcase their cooking and helps customers discover trusted, local, home-style meals.</p>
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="phone-stage reveal delay-1" aria-label="Mobile app preview">
+      <div class="phone-stage reveal delay-1 show" aria-label="Mobile app preview">
         <div class="phone-glow"></div>
         <div class="phone-card">
           <div class="phone-notch"></div>
@@ -158,18 +158,22 @@
         <span class="eyebrow">🔔 Be first to know</span>
         <h2>Join the launch waitlist</h2>
         <p>Get updates when HomeChef Connect opens for early customers, home chefs, and pilot communities.</p>
+
         <form id="waitlistForm" class="waitlist-form">
-  <input id="emailInput" type="email" placeholder="Enter your email *" required />
-  <input id="nameInput" type="text" placeholder="Your name (optional)" />
-  <input id="phoneInput" type="tel" placeholder="Phone number (optional)" />
-  <select id="interestType" aria-label="I am interested as">
-    <option value="Customer">Customer</option>
-    <option value="Home Chef">Home Chef</option>
-    <option value="Community">Apartment / Community</option>
-    <option value="Supporter">Early Supporter</option>
-  </select>
-  <button type="submit">Notify Me</button>
-</form>
+          <input id="emailInput" type="email" placeholder="Enter your email *" required />
+          <input id="nameInput" type="text" placeholder="Your name (optional)" />
+          <input id="phoneInput" type="tel" placeholder="Phone number (optional)" />
+
+          <select id="interestType" aria-label="I am interested as">
+            <option value="Customer">Customer</option>
+            <option value="Home Chef">Home Chef</option>
+            <option value="Community">Apartment / Community</option>
+            <option value="Supporter">Early Supporter</option>
+          </select>
+
+          <button type="submit">Notify Me</button>
+        </form>
+
         <p id="formMessage" class="form-message" role="status"></p>
       </div>
     </section>
