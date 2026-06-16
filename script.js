@@ -1,27 +1,37 @@
-const revealItems = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-revealItems.forEach((item) => observer.observe(item));
-
 const form = document.getElementById('waitlistForm');
 const emailInput = document.getElementById('emailInput');
 const interestType = document.getElementById('interestType');
 const formMessage = document.getElementById('formMessage');
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
+
   const email = emailInput.value.trim();
   const type = interestType.value;
+
   if (!email) return;
-  const existing = JSON.parse(localStorage.getItem('homechef_waitlist') || '[]');
-  existing.push({ email, type, createdAt: new Date().toISOString() });
-  localStorage.setItem('homechef_waitlist', JSON.stringify(existing));
-  formMessage.textContent = `Thank you! Your ${type.toLowerCase()} interest has been saved for launch updates.`;
-  emailInput.value = '';
+
+  formMessage.textContent = 'Sending...';
+
+  try {
+    const response = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        interestType: type
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      formMessage.textContent = 'Thank you! We have received your interest and sent a confirmation email.';
+      emailInput.value = '';
+    } else {
+      formMessage.textContent = result.message || 'Something went wrong. Please try again.';
+    }
+  } catch (error) {
+    formMessage.textContent = 'Something went wrong. Please try again.';
+  }
 });
