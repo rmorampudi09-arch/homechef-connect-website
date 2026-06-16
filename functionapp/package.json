@@ -1,10 +1,5 @@
 {
   "name": "homechef-connect-api",
   "version": "1.0.0",
-  "description": "HomeChef Connect waitlist email API",
-  "private": true,
-  "main": "index.js",
-  "engines": {
-    "node": ">=20"
-  }
+  "private": true
 }
