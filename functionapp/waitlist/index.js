@@ -17,7 +17,10 @@ function httpsPost(url, headers, body) {
         data += chunk;
       });
       res.on("end", () => {
-        resolve({ statusCode: res.statusCode, body: data });
+        resolve({
+          statusCode: res.statusCode,
+          body: data
+        });
       });
     });
 
@@ -48,7 +51,10 @@ module.exports = async function (context, req) {
       context.res = {
         status: 400,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ success: false, message: "email and interestType are required" })
+        body: JSON.stringify({
+          success: false,
+          message: "email and interestType are required"
+        })
       };
       return;
     }
@@ -85,7 +91,10 @@ module.exports = async function (context, req) {
       context.res = {
         status: 500,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ success: false, message: `Failed to get Graph access token: ${tokenResponse.body}` })
+        body: JSON.stringify({
+          success: false,
+          message: `Failed to get Graph access token: ${tokenResponse.body}`
+        })
       };
       return;
     }
@@ -96,8 +105,17 @@ module.exports = async function (context, req) {
       const payload = JSON.stringify({
         message: {
           subject,
-          body: { contentType: "HTML", content: htmlBody },
-          toRecipients: [{ emailAddress: { address: to } }]
+          body: {
+            contentType: "HTML",
+            content: htmlBody
+          },
+          toRecipients: [
+            {
+              emailAddress: {
+                address: to
+              }
+            }
+          ]
         },
         saveToSentItems: true
       });
@@ -117,8 +135,8 @@ module.exports = async function (context, req) {
       }
     }
 
-    const safeName = name || 'Not provided';
-    const safePhone = phone || 'Not provided';
+    const safeName = name || "Not provided";
+    const safePhone = phone || "Not provided";
 
     await sendMail(
       notifyTo,
@@ -138,10 +156,10 @@ module.exports = async function (context, req) {
       email,
       "Thank you for your interest in HomeChef Connect",
       `
-        <p>Hello${name ? ' ' + name : ''},</p>
+        <p>Hello${name ? " " + name : ""},</p>
         <p>Thank you for registering your interest in <strong>HomeChef Connect</strong>.</p>
         <p>You registered as: <strong>${interestType}</strong>.</p>
-        ${phone ? `<p>Your phone number on record is: <strong>${phone}</strong>.</p>` : ''}
+        ${phone ? `<p>Your phone number on record is: <strong>${phone}</strong>.</p>` : ""}
         <p>We’re building a trusted homemade food community for customers and home chefs, and we’ll keep you updated as we move toward launch.</p>
         <p>Website: <a href="${siteUrl}">${siteUrl}</a></p>
         <p>Regards,<br/>HomeChef Connect</p>
@@ -151,7 +169,10 @@ module.exports = async function (context, req) {
     context.res = {
       status: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ success: true, message: "Interest received successfully. Thank-you email sent." })
+      body: JSON.stringify({
+        success: true,
+        message: "Interest received successfully. Thank-you email sent."
+      })
     };
   } catch (error) {
     const errorMessage = error && error.message ? error.message : "Unknown server error";
@@ -160,7 +181,10 @@ module.exports = async function (context, req) {
     context.res = {
       status: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ success: false, message: errorMessage })
+      body: JSON.stringify({
+        success: false,
+        message: errorMessage
+      })
     };
   }
 };
