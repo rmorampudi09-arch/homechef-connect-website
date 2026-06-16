@@ -12,6 +12,8 @@ revealItems.forEach((item) => observer.observe(item));
 
 const form = document.getElementById('waitlistForm');
 const emailInput = document.getElementById('emailInput');
+const nameInput = document.getElementById('nameInput');
+const phoneInput = document.getElementById('phoneInput');
 const interestType = document.getElementById('interestType');
 const formMessage = document.getElementById('formMessage');
 
@@ -20,6 +22,8 @@ if (form && emailInput && interestType && formMessage) {
     event.preventDefault();
 
     const email = emailInput.value.trim();
+    const name = nameInput ? nameInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
     const type = interestType.value;
 
     if (!email) return;
@@ -31,7 +35,9 @@ if (form && emailInput && interestType && formMessage) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: email,
+          email,
+          name,
+          phone,
           interestType: type
         })
       });
@@ -41,6 +47,8 @@ if (form && emailInput && interestType && formMessage) {
       if (result.success) {
         formMessage.textContent = 'Thank you! We have received your interest and sent a confirmation email.';
         emailInput.value = '';
+        if (nameInput) nameInput.value = '';
+        if (phoneInput) phoneInput.value = '';
       } else {
         formMessage.textContent = result.message || 'Something went wrong. Please try again.';
       }
