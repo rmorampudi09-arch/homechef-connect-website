@@ -159,15 +159,17 @@
         <h2>Join the launch waitlist</h2>
         <p>Get updates when HomeChef Connect opens for early customers, home chefs, and pilot communities.</p>
         <form id="waitlistForm" class="waitlist-form">
-          <input id="emailInput" type="email" placeholder="Enter your email" required />
-          <select id="interestType" aria-label="I am interested as">
-            <option value="Customer">Customer</option>
-            <option value="Home Chef">Home Chef</option>
-            <option value="Community">Apartment / Community</option>
-            <option value="Supporter">Early Supporter</option>
-          </select>
-          <button type="submit">Notify Me</button>
-        </form>
+  <input id="emailInput" type="email" placeholder="Enter your email *" required />
+  <input id="nameInput" type="text" placeholder="Your name (optional)" />
+  <input id="phoneInput" type="tel" placeholder="Phone number (optional)" />
+  <select id="interestType" aria-label="I am interested as">
+    <option value="Customer">Customer</option>
+    <option value="Home Chef">Home Chef</option>
+    <option value="Community">Apartment / Community</option>
+    <option value="Supporter">Early Supporter</option>
+  </select>
+  <button type="submit">Notify Me</button>
+</form>
         <p id="formMessage" class="form-message" role="status"></p>
       </div>
     </section>
