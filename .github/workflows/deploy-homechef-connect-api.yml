@@ -20,3 +20,7 @@ jobs:
           app-name: homechef-connect-api
           package: functionapp
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          sku: flexconsumption
+          remote-build: true
+          enable-oryx-build: false
+          scm-do-build-during-deployment: false
